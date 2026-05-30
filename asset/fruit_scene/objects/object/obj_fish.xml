@@ -1,0 +1,128 @@
+<mujoco model="obj_fish">
+    <asset>
+        <!-- 鱼身视觉网格 -->
+        <mesh file="../mesh/visual/fish.obj" name="fish_visual" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        
+        <!-- 鱼身碰撞网格 -->
+        <mesh file="../mesh/obj_fish/collision/obj_fish0.obj" name="fish_collision_0" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_fish/collision/obj_fish1.obj" name="fish_collision_1" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_fish/collision/obj_fish2.obj" name="fish_collision_2" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_fish/collision/obj_fish3.obj" name="fish_collision_3" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        
+        <!-- 鱼鳍碰撞网格 -->
+        <mesh file="../mesh/obj_fish/collision/fin0.obj" name="fin_collision_0" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_fish/collision/fin1.obj" name="fin_collision_1" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_fish/collision/fin2.obj" name="fin_collision_2" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_fish/collision/fin3.obj" name="fin_collision_3" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_fish/collision/fin4.obj" name="fin_collision_4" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_fish/collision/fin5.obj" name="fin_collision_5" scale="0.12 0.12 0.12" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        
+        <!-- 材质定义 -->
+        <material name="fish_mat" rgba="0.2 0.5 0.8 1" specular="0.5" shininess="0.5" />
+    </asset>
+
+    <worldbody>
+        <body name="fish_obj" pos="0 0 0" euler="0 0 0">
+            <freejoint />
+            
+            <!-- 鱼身软体 -->
+            <flexcomp type="mesh" 
+                      material="fish_mat" 
+                      rgba="0.2 0.5 0.8 1"
+                      radius="0.01" 
+                      stiffness="3000" 
+                      damping="10" 
+                      pointmass="0.005" 
+                      edge="0.01"
+                      scale="0.12 0.12 0.12"
+                      mesh="fish_visual">
+                <contact selfcollide="all" friction="0.95 0.3 0.1"/>
+            </flexcomp>
+            
+            <!-- 鱼鳍软体 - 更硬的材质 -->
+            <flexcomp type="mesh" 
+                      material="fish_mat" 
+                      rgba="0.3 0.6 0.9 1"
+                      radius="0.005" 
+                      stiffness="8000" 
+                      damping="15" 
+                      pointmass="0.003" 
+                      edge="0.005"
+                      scale="0.12 0.12 0.12"
+                      mesh="fin_collision_0">
+                <contact selfcollide="all" friction="0.95 0.3 0.1"/>
+            </flexcomp>
+            
+            <!-- 其他鱼鳍 -->
+            <flexcomp type="mesh" 
+                      material="fish_mat" 
+                      rgba="0.3 0.6 0.9 1"
+                      radius="0.005" 
+                      stiffness="8000" 
+                      damping="15" 
+                      pointmass="0.003" 
+                      edge="0.005"
+                      scale="0.12 0.12 0.12"
+                      mesh="fin_collision_1">
+                <contact selfcollide="all" friction="0.95 0.3 0.1"/>
+            </flexcomp>
+            
+            <flexcomp type="mesh" 
+                      material="fish_mat" 
+                      rgba="0.3 0.6 0.9 1"
+                      radius="0.005" 
+                      stiffness="8000" 
+                      damping="15" 
+                      pointmass="0.003" 
+                      edge="0.005"
+                      scale="0.12 0.12 0.12"
+                      mesh="fin_collision_2">
+                <contact selfcollide="all" friction="0.95 0.3 0.1"/>
+            </flexcomp>
+            
+            <flexcomp type="mesh" 
+                      material="fish_mat" 
+                      rgba="0.3 0.6 0.9 1"
+                      radius="0.005" 
+                      stiffness="8000" 
+                      damping="15" 
+                      pointmass="0.003" 
+                      edge="0.005"
+                      scale="0.12 0.12 0.12"
+                      mesh="fin_collision_3">
+                <contact selfcollide="all" friction="0.95 0.3 0.1"/>
+            </flexcomp>
+            
+            <flexcomp type="mesh" 
+                      material="fish_mat" 
+                      rgba="0.3 0.6 0.9 1"
+                      radius="0.005" 
+                      stiffness="8000" 
+                      damping="15" 
+                      pointmass="0.003" 
+                      edge="0.005"
+                      scale="0.12 0.12 0.12"
+                      mesh="fin_collision_4">
+                <contact selfcollide="all" friction="0.95 0.3 0.1"/>
+            </flexcomp>
+            
+            <flexcomp type="mesh" 
+                      material="fish_mat" 
+                      rgba="0.3 0.6 0.9 1"
+                      radius="0.005" 
+                      stiffness="8000" 
+                      damping="15" 
+                      pointmass="0.003" 
+                      edge="0.005"
+                      scale="0.12 0.12 0.12"
+                      mesh="fin_collision_5">
+                <contact selfcollide="all" friction="0.95 0.3 0.1"/>
+            </flexcomp>
+            
+            <!-- 定位点 -->
+            <site rgba="0 0 0 0" size="0.005" pos="0 0 -0.05" name="bottom_site_fish"/>
+            <site rgba="0 0 0 0" size="0.005" pos="0 0 0.05" name="top_site_fish"/>
+            <site rgba="0 0 0 0" size="0.005" pos="0.04 0 0" name="horizontal_radius_site_fish"/>
+        </body>
+    </worldbody>
+</mujoco>

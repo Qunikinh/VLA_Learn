@@ -1,0 +1,14 @@
+<mujoco model="obj_fish0">
+  <asset>
+    <mesh name="fish0_mesh" file="asset/obj_fish0/fish0_new.obj" scale="0.4 0.4 0.4"/>
+    <texture name="fish0_tex" type="2d" file="asset/obj_fish0/fish0.png" />
+    <material name="fish0_mat" texture="fish0_tex" specular="0.3" />
+  </asset>
+
+  <worldbody>
+    <body name="fish0_obj" euler="0 90 0">
+        <freejoint/>
+        <geom type="mesh" mesh="fish0_mesh" material="fish0_mat" mass="0.2" friction="1 0.1 0.1" margin="0.01" group="2"/>
+    </body>
+  </worldbody>
+</mujoco>

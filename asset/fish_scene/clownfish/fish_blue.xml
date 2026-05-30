@@ -1,0 +1,13 @@
+<mujoco model="fish_blue">
+    <asset>
+        <mesh name="fish_blue_mesh" file="asset/fish_blue.obj" scale="2 2 2"/>
+        <texture name="fish_blue_tex" type="2d" file="asset/fish_blue.png"/>
+        <material name="fish_blue_mat" texture="fish_blue_tex" specular="0.3"/>
+    </asset>
+    <worldbody>
+        <body name="fish_blue_obj" pos="0 0 0.1" euler="0 90 0">
+        <freejoint/>
+        <geom type="mesh" mesh="fish_blue_mesh" material="fish_blue_mat" mass="0.2" friction="3 10.0 10.0" solimp="0.95 0.99 0.001" solref="0.015 1" margin="0.005" group="2"/>
+    </body>
+    </worldbody>
+</mujoco>

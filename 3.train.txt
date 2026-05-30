@@ -1,0 +1,2 @@
+#todo拉取并微调模型(UV的环境需要加uv run)
+python train_smolvla.py --config_path train_config.yaml

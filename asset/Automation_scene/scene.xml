@@ -1,0 +1,43 @@
+<!--todo 场景xml文件 -->
+<mujoco model="Scanned Objects">
+    <!-- Memory -->
+    <size memory="1024M"/>
+    
+    <!-- Default options -->
+    <!-- <compiler angle="radian" assetdir="./objects/mesh" autolimits="true" /> -->
+    <option integrator="RK4" noslip_iterations="20" />
+    <default>
+        <joint armature="0.1" damping="0.1" />
+        <default class="visual_only">
+            <geom type="mesh" contype="0" conaffinity="0" group="2" />
+        </default>
+        <default class="no_visual_collision">
+            <!-- visual group of 'collision' should be 3 to not render -->
+            <geom type="capsule" solimp=".9 .99 .001" solref=".015 1" group="3" />
+        </default>
+        <default class="visual_collision">
+            <geom type="mesh" solimp=".9 .99 .001" solref=".015 1" group="2" />
+        </default>
+    </default>
+    
+    <!--todo 天空和地面 -->
+    <include file="./surround/floor.xml" />
+
+    <!--todo 传送带和通道 -->
+    <include file="./conveyor/conveyor.xml"/><!-- obj位置:1.2 1 1 -->
+    <include file="./conveyor/passage.xml"/><!-- obj位置:1.7 1 1.7 -->
+
+    <!--todo 桌面和相机 -->
+    <include file="./surround/table.xml" />
+    <include file="./surround/camera.xml" />
+    
+    <!--todo 机械臂 -->
+    <include file="./robots/robotis_omy/omy.xml" />
+
+    <!--todo 物体 -->
+    <!-- <include file="./objaverse/mug_red/model_new.xml"/>
+    <include file="./objaverse/mug_blue/model_new.xml"/> -->
+
+    <!--todo 目标位置 -->
+    <include file="./objaverse/plate/obj_plate.xml"/>
+</mujoco>

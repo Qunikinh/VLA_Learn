@@ -1,0 +1,31 @@
+dataset:
+  repo_id: smolvla_qunikin
+  root: ${DATA_ROOT}
+
+policy:
+  type: smolvla
+  device: cuda
+  chunk_size: 5
+  n_action_steps: 5
+  push_to_hub: false
+
+output_dir: ${CHECKPOINT_DIR}
+job_name: smolvla_qunikin
+steps: 80_000
+batch_size: 16
+num_workers: 8
+save_checkpoint: true
+save_freq: 20_000
+log_freq: 25
+eval_freq: -1
+seed: 42
+
+wandb:
+  enable: false
+  project: smolvla_qunikin
+
+customize:
+  push_to_hub: true
+  provider: modelscope
+  access_token: ms-17c5b78f-d350-436f-bbe4-0a00d6192e6a
+  repo: qunikin/smolvla_qunikin

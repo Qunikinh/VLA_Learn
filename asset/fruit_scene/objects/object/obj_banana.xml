@@ -1,0 +1,38 @@
+<mujoco model="obj_banana">
+    <asset>
+        <!-- 视觉网格 -->
+        <mesh file="../mesh/obj_banana/visual/banana.obj" name="banana_visual" scale="1.2 1.2 1.2" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        
+        <!-- 碰撞网格 -->
+        <mesh file="../mesh/obj_banana/collision/obj_banana0.obj" name="banana_collision_0" scale="1.2 1.2 1.2" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_banana/collision/obj_banana1.obj" name="banana_collision_1" scale="1.2 1.2 1.2" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        <mesh file="../mesh/obj_banana/collision/obj_banana2.obj" name="banana_collision_2" scale="1.2 1.2 1.2" refquat="0.7071067811865472 0.0 0.0 0.7071067811865476" />
+        
+        <!-- 材质定义 -->
+        <material name="banana_mat" rgba="0.85 0.7 0.3 1" specular="0.5" shininess="0.5" />
+    </asset>
+
+    <worldbody>
+        <body name="banana_obj" pos="0 0 0" euler="0 0 0">
+            <freejoint />
+            <body name="object_banana" pos="0 0 0" euler="0 0 0">
+                <!-- 视觉几何体 -->
+                <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" 
+                      type="mesh" mesh="banana_visual" conaffinity="0" contype="0" group="2" material="banana_mat" />
+                
+                <!-- 碰撞几何体 -->
+                <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" 
+                      type="mesh" mesh="banana_collision_0" group="3" rgba="0.8 0.8 0.8 0.0" />
+                <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" 
+                      type="mesh" mesh="banana_collision_1" group="3" rgba="0.8 0.8 0.8 0.0" />
+                <geom solimp="0.998 0.998 0.001" solref="0.001 1" density="100" friction="0.95 0.3 0.1" 
+                      type="mesh" mesh="banana_collision_2" group="3" rgba="0.8 0.8 0.8 0.0" />
+            </body>
+            
+            <!-- 定位点 -->
+            <site rgba="0 0 0 0" size="0.005" pos="0 0 -0.05" name="bottom_site_banana" />
+            <site rgba="0 0 0 0" size="0.005" pos="0 0 0.05" name="top_site_banana" />
+            <site rgba="0 0 0 0" size="0.005" pos="0.04 0 0" name="horizontal_radius_site_banana" />
+        </body>
+    </worldbody>
+</mujoco>

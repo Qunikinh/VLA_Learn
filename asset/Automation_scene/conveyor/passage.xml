@@ -1,0 +1,24 @@
+<mujoco model="conveyor_passage">
+    <asset>
+        <mesh name="passage_mesh_uB" file="asset/passage/up_B.obj"/>
+        <mesh name="passage_mesh_uF" file="asset/passage/up_F.obj"/>
+        <mesh name="passage_mesh_uL" file="asset/passage/up_L.obj"/>
+        <mesh name="passage_mesh_uR" file="asset/passage/up_R.obj"/>
+        <mesh name="passage_mesh_dB" file="asset/passage/down_B.obj"/>
+        <mesh name="passage_mesh_dF" file="asset/passage/down_F.obj"/>
+        <mesh name="passage_mesh_dL" file="asset/passage/down_L.obj"/>
+        <mesh name="passage_mesh_dR" file="asset/passage/down_R.obj"/>
+    </asset>
+    <worldbody>
+        <body name="passage_obj" pos="1.72 1 1.5">
+        <geom type="mesh" mesh="passage_mesh_uB"/>
+        <geom type="mesh" mesh="passage_mesh_uF"/>
+        <geom type="mesh" mesh="passage_mesh_uL"/>
+        <geom type="mesh" mesh="passage_mesh_uR"/>
+        <geom type="mesh" mesh="passage_mesh_dB"/>
+        <geom type="mesh" mesh="passage_mesh_dF"/>
+        <geom type="mesh" mesh="passage_mesh_dL"/>
+        <geom type="mesh" mesh="passage_mesh_dR"/>
+        </body>
+    </worldbody>
+</mujoco>

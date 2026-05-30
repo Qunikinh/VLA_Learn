@@ -1,0 +1,79 @@
+#1安装配置uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+echo 'export UV_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple' >> ~/.bashrc
+#(缓存丢数据盘,验证uv cache dir)
+echo 'export UV_CACHE_DIR=/root/autodl-tmp/cache/uv' >> ~/.bashrc
+
+
+#2配置conda
+conda init
+source /root/.bashrc
+conda config --set auto_activate_base false
+source ~/.bashrc
+
+#3配置cuda
+echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc
+echo 'export PATH=$CUDA_HOME/bin:$PATH' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+source ~/.bashrc
+
+#4升级pip,apt,git等
+sudo apt update && sudo apt upgrade && sudo apt-get update
+sudo apt install -y libevdev-dev python3-dev build-essential
+sudo apt-get install -y git-lfs
+git lfs install
+#(方便编辑环境变量nano ~/.bashrc)
+sudo apt install nano -y
+#(用于解压上传的zip文件)
+sudo apt install unzip -y
+#(清空回收站:trash-empty)
+sudo apt install trash-cli -y
+#(视频解码器,数据集用了视频编码会用到)
+sudo apt install -y ffmpeg libavutil-dev libavcodec-dev libavformat-dev libavdevice-dev
+
+#5创建环境
+conda create -n <name> python=3.1x -y
+conda activate <name>(conda deactivate退出)
+
+#6安装依赖(使用uv多源策略快速安装)
+uv pip install --upgrade setuptools wheel pip
+uv pip install -e . \
+  --extra-index-url https://download.pytorch.org/whl/cu129 \
+  --index-strategy unsafe-best-match
+(uv cache clean删除uv缓存)
+uv pip install ninja
+(有卡模式)MAX_JOBS=8 uv pip install flash-attn --no-build-isolation
+(下载慢去Github上手动下载whl,https://github.com/Dao-AILab/flash-attention/releases/)
+
+#7配置hugging face
+(登陆,Access Tokens)
+pip install huggingface-hub(退出虚拟环境安装)
+hf auth login(验证:hf auth whoami)(保存在/.cache/huggingface/token中,之后不要随意删除.cache文件夹)
+(国内镜像,登陆前设置)
+echo 'export HF_ENDPOINT=https://hf-mirror.com' >> ~/.bashrc
+(缓存丢数据盘,验证hf env)
+echo 'export HF_HOME=/root/autodl-tmp/cache/huggingface' >> ~/.bashrc
+source ~/.bashrc
+#修改 torch 缓存(验证:python -c "import torch; print(torch.hub.get_dir())")
+echo 'export TORCH_HOME=/root/autodl-tmp/cache/torch' >> ~/.bashrc
+source ~/.bashrc
+
+#8配置modelscope
+pip install modelscope(退出虚拟环境安装)
+echo 'export MODELSCOPE_CACHE=/root/autodl-tmp/cache/modelscope' >> ~/.bashrc
+source ~/.bashrc
+
+#9下载模型(默认路径已经更改)
+hf download <modelname>
+modelscope download --model <modelname>
+
+#10训练设置(nano ~/.bashrc)
+(Train Configure)
+export DATA_ROOT=/root/autodl-tmp/dataset/lerobot
+export OUTPUT_DIR=/root/autodl-tmp/checkpoints/dreamzero_droid
+export NUM_GPUS=1
+(Base Model Weights .eg)
+export WAN_CKPT_DIR="/root/autodl-tmp/cache/modelscope/models/Wan-AI/Wan2.1-I2V-14B-480P"
+export TOKENIZER_DIR="/root/autodl-tmp/cache/modelscope/models/google/umt5-xxl"
+

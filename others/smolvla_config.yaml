@@ -1,0 +1,30 @@
+dataset:
+  repo_id: qunikin_language # Repository ID
+  root: ./demo_data
+ # Your root for data file!
+policy:
+  type : smolvla
+  chunk_size: 5
+  n_action_steps: 5
+  device: cuda
+  push_to_hub: false
+  # repo_id: qunikin_language
+  
+save_checkpoint: true
+output_dir: ./ckpt/smolvla # Save directory
+batch_size: 16
+job_name : smolvla_qunikin_eai
+resume: false 
+seed : 42
+num_workers: 8
+steps: 20_000
+eval_freq: -1 # No evaluation
+log_freq: 500
+save_freq: 1_000  #保存一次
+use_policy_training_preset: true
+  
+wandb:
+  enable: false
+  project: smolvla_datawhale_eai
+  entity: <your_wandb_entity>
+  disable_artifact: true

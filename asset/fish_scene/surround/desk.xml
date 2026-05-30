@@ -1,0 +1,19 @@
+<mujoco>
+
+    <asset>
+        <mesh name="desk_mesh" file="asset/desk/desk.obj" scale="1.015 1.015 1.015"/>
+        <material name="desk_mtl" rgba="0.08 0.08 0.08 1" specular="0.5"/>
+    </asset>
+    <worldbody>
+        <body name="desk_obj" pos="0.2 0 0">
+            <geom
+                type="mesh"
+                mesh="desk_mesh"
+                material="desk_mtl"
+                mass="100.0"
+                group="0"
+                condim="3"
+            />
+        </body>
+    </worldbody>
+</mujoco>

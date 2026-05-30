@@ -1,0 +1,17 @@
+<mujoco model="obj_fish1">
+  <asset>
+    <mesh name="fish1_mesh" file="asset/obj_fish1/fish1.obj" />
+    <texture name="fish1_tex" type="2d" file="asset/obj_fish1/fish1.png" />
+    <material name="fish1_mat" texture="fish1_tex" specular="0.3" />
+  </asset>
+
+  <worldbody>
+    <body name="fish1_obj">
+      <flexcomp type="mesh" file="asset/obj_fish1/fish1.obj" pos=".6 0 1" dim="2" euler="90 0 90" 
+      radius=".001" material="fish1_mat" mass=".05" name="fish1" dof="trilinear">
+        <elasticity young="1e3" poisson="0.1" damping="0.01" />
+        <contact selfcollide="none" internal="false" />
+      </flexcomp>
+    </body>
+  </worldbody>
+</mujoco>

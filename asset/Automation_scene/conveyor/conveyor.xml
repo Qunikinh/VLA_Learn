@@ -1,0 +1,56 @@
+<mujoco model="conveyor">
+  <statistic center="0 -.3 1" extent="2.5"/>
+
+  <asset>
+    <texture name="texcyl" type="2d" builtin="checker" rgb1=".3 .3 .3" rgb2=".15 0.15 0.15"
+      width="512" height="512" mark="cross" markrgb=".22 .22 .22"/>
+    <material name="matcyl" reflectance="0.3" texture="texcyl" texrepeat="1 1" texuniform="true"/>
+    <mesh name="pole_mesh" file="asset/pole.obj" scale="1 .3 1"/>
+    <mesh name="flat_mesh" file="asset/flat.obj" scale="1 .3 1"/>
+    <material name="frame_mtl" rgba="0.08 0.08 0.08 1" specular="0.5"/>
+    <mesh name="frame_mesh" file="asset/frame.obj" scale="1 .3 1"/>
+    <material name="belt_mtl" 
+    rgba="0.15 0.15 0.15 1" specular="0.3" shininess="0.1" reflectance="0.05"/>
+  </asset>
+
+  <worldbody>
+    <flexcomp type="mesh" file="asset/belt.obj" scale="1 .3 1" pos=".5 1 .6" material="belt_mtl"
+    mass="4" name="belt_obj" dim="2">
+      <contact condim="2" solref="0.01 1" solimp=".95 .99 .0001"/>
+      <edge equality="false" damping="10"/>
+      <elasticity young="3e8" poisson="0.1" thickness="1e-4" elastic2d="stretch"/>
+    </flexcomp>
+    
+    <body name="left" pos="-.5 1 .6">
+      <joint name="expand_left" type="slide" axis="-1 0 0" range="0 1" damping="20"/>
+      <joint name="rotate" type="hinge" axis="0 1 0"/>
+      <geom type="mesh" mesh="pole_mesh" density="1" material="matcyl"/>
+    </body>
+    <body name="right" pos="1.5 1 .6">
+      <joint name="expand_right" type="slide" axis="1 0 0" range="0 1" damping="20"/>
+      <joint type="hinge" axis="0 1 0"/>
+      <geom type="mesh" mesh="pole_mesh" density="1" material="matcyl"/>
+    </body>
+    <body name="conveyor_flat" pos=".5 1 .6">
+      <geom type="mesh" mesh="flat_mesh"/>
+    </body>
+    <body name="conveyor_frame" pos=".5 1 .6">
+      <geom type="mesh" mesh="frame_mesh" material="frame_mtl" pos="0 0.32 0"/>
+      <geom type="mesh" mesh="frame_mesh" material="frame_mtl" pos="0 -0.32 0"/>
+    </body>    
+    <!--todo testmodel物体margin必须大于0.015,因为仿真离散,坠落速度过快物体网格点会卡入传送带下面出不来 -->
+    <body pos="1.7 1 1.7"><freejoint/>
+      <geom type="box" size="0.1 0.1 0.1" density="0.1" rgba="0.2 0.6 0.8 1" margin="0.015"/>
+    </body>
+  </worldbody>
+
+   <actuator>
+    <position name="expand_left" joint="expand_left" ctrlrange="0 1" kp="100"/>
+    <position name="expand_right" joint="expand_right" ctrlrange="0 1" kp="100"/>
+    <velocity name="rotate" joint="rotate" ctrlrange="-10 10"/>
+  </actuator>
+
+  <keyframe>
+    <key ctrl=".7 .7 8"/>
+  </keyframe>
+</mujoco>

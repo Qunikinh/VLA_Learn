@@ -1,0 +1,13 @@
+<mujoco model="fish_black">
+    <asset>
+        <mesh name="fish_black_mesh" file="asset/fish_black.obj" scale="2 2 2"/>
+        <texture name="fish_black_tex" type="2d" file="asset/fish_black.png"/>
+        <material name="fish_black_mat" texture="fish_black_tex" specular="0.3"/>
+    </asset>
+    <worldbody>
+        <body name="fish_black_obj" pos="0 0 0.1" euler="0 90 0">
+        <freejoint/>
+        <geom type="mesh" mesh="fish_black_mesh" material="fish_black_mat" mass="0.2" friction="3 10.0 10.0" solimp="0.95 0.99 0.001" solref="0.015 1" margin="0.005" group="2"/>
+    </body>
+    </worldbody>
+</mujoco>

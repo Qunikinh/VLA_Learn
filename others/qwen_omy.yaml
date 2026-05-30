@@ -1,0 +1,46 @@
+dataset:
+  repo_id: datawhale_eai_pnp_language
+  root: ./demo_data_language
+
+policy:
+  type: qwen
+  pretrained_path: /root/autodl-tmp/models/Qwen2-VL-2B-Instruct
+  chunk_size: 5
+  n_action_steps: 5
+  freeze_qwen: true
+  use_gradient_checkpointing: true
+  device: cuda
+  use_amp: true
+  push_to_hub: false
+
+output_dir: ./ckpt/qwen_finetune
+batch_size: 32
+job_name: qwen_finetune_fish
+resume: false
+seed: 42
+num_workers: 2
+steps: 20000
+eval_freq: -1
+log_freq: 50
+save_checkpoint: true
+save_freq: 5000
+
+use_policy_training_preset: false
+
+optimizer:
+  type: adamw
+  lr: 1e-4
+  weight_decay: 1e-4
+  grad_clip_norm: 1.0
+  betas: [0.9, 0.999]
+  eps: 1e-08
+
+scheduler:
+  type: cosine_decay_with_warmup
+  peak_lr: 1e-4
+  decay_lr: 2.5e-06
+  num_warmup_steps: 1000
+  num_decay_steps: 10000
+
+wandb:
+  enable: false

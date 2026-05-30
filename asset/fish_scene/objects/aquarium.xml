@@ -1,0 +1,80 @@
+<mujoco>
+    <asset>
+        <mesh name="glass_mesh1" file="asset/aquarium/glass1.obj" scale="0.8 0.8 0.4"/>
+        <mesh name="glass_mesh2" file="asset/aquarium/glass2.obj" scale="0.8 0.8 0.4"/>
+        <mesh name="glass_mesh3" file="asset/aquarium/glass3.obj" scale="0.8 0.8 0.4"/>
+        <mesh name="glass_mesh4" file="asset/aquarium/glass4.obj" scale="0.8 0.8 0.4"/>
+        <mesh name="glass_mesh5" file="asset/aquarium/glass5.obj" scale="0.8 0.8 0.4"/>
+        <material name="glass_mat"
+            rgba="0.85 0.95 1.0 0.25"
+            specular="0.85"
+            shininess="0.95"/>
+
+        <mesh name="water_mesh" file="asset/aquarium/water.obj" scale="0.8 0.8 0.4"/>
+        <material name="water_mat"
+            rgba="0.3 0.6 0.9 0.4"  
+            specular="0.1"
+            shininess="0.1"/>
+
+        <!-- <mesh name="water_cube" file="asset/aquarium/cube.obj" scale="0.8 0.8 0.8"/> -->
+    </asset>
+
+    <worldbody>
+        <body name="aquarium" pos="0.3 -0.3 0.88">
+            <geom type="mesh"
+                  mesh="glass_mesh1"
+                  material="glass_mat"
+                  mass="1"
+                  friction="1.0 3.0 3.0"
+                  solimp="0.9 0.95 0.01"
+                  solref="0.02 1"
+                  group="2"/>
+            <geom type="mesh"
+                  mesh="glass_mesh2"
+                  material="glass_mat"
+                  mass="1"
+                  friction="1.0 3.0 3.0"
+                  solimp="0.9 0.95 0.01"
+                  solref="0.02 1"
+                  group="2"/>
+            <geom type="mesh"
+                  mesh="glass_mesh3"
+                  material="glass_mat"
+                  mass="1"
+                  friction="1.0 3.0 3.0"
+                  solimp="0.9 0.95 0.01"
+                  solref="0.02 1"
+                  group="2"/>
+            <geom type="mesh"
+                  mesh="glass_mesh4"
+                  material="glass_mat"
+                  mass="1"
+                  friction="1.0 3.0 3.0"
+                  solimp="0.9 0.95 0.01"
+                  solref="0.02 1"
+                  group="2"/>
+            <geom type="mesh"
+                  mesh="glass_mesh5"
+                  material="glass_mat"
+                  mass="1"
+                  friction="1.0 3.0 3.0"
+                  solimp="0.9 0.95 0.01"
+                  solref="0.02 1"
+                  group="2"/>
+            <geom type="mesh"
+                  mesh="water_mesh"
+                  material="water_mat"
+                  mass="0"
+                  contype="0"       
+                  conaffinity="0"    
+                  group="2"/>
+            <!-- <geom type="mesh"
+                  mesh="water_cube"
+                  mass="1"
+                  friction="1.0 3.0 3.0"
+                  solimp="0.9 0.95 0.01"
+                  solref="0.02 1"
+                  group="2"/> -->
+        </body>
+    </worldbody>
+</mujoco>

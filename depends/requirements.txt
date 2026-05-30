@@ -1,0 +1,13 @@
+mujoco
+pyautogui
+matplotlib
+scipy
+num2words
+accelerate
+safetensors
+datasets
+torch
+torchvision
+torchaudio
+transformers
+ultralytics
